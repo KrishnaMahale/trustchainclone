@@ -1,0 +1,26 @@
+# TrustChain – local dev
+# Run: docker-compose up -d
+# Backend: http://localhost:8000  (run manually: cd backend && uvicorn main:app --reload)
+# Frontend: run manually: cd frontend && npm run dev
+# DB: PostgreSQL 5432
+
+version: "3.8"
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: trustchain
+      POSTGRES_PASSWORD: trustchain
+      POSTGRES_DB: trustchain
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U trustchain"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata: {}
