@@ -152,6 +152,3 @@ README.md
 
 ---
 
-## License
-
-MIT (or your choice). Use for hackathons and production with appropriate security review.
